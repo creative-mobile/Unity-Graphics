@@ -23,7 +23,7 @@ namespace UnityEngine.Experimental.Rendering
 
             // Enable XR layout only for game camera
             bool isGameCamera = (camera.cameraType == CameraType.Game || camera.cameraType == CameraType.VR);
-            bool xrSupported = isGameCamera && camera.targetTexture == null && enableXR;
+            bool xrSupported = isGameCamera /*&& camera.targetTexture == null*/ && enableXR;
 
             if (XRSystem.displayActive && xrSupported)
             {
