@@ -326,5 +326,11 @@ namespace UnityEngine.Experimental.Rendering
                 throw new NotImplementedException($"Invalid XR setup for single-pass, trying to add too many views! Max supported: {TextureXR.slices}");
             }
         }
+
+        public void UpdateRenderTexture(RenderTexture targetTexture)
+        {
+            renderTarget = new RenderTargetIdentifier(targetTexture, 0, CubemapFace.Unknown, -1);
+            renderTargetDesc = targetTexture.descriptor;
+        }
     }
 }

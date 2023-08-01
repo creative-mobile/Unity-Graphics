@@ -262,6 +262,10 @@ namespace UnityEngine.Experimental.Rendering
                 if (CanUseSinglePass(camera, renderPass))
                 {
                     var xrPass = s_PassAllocator(BuildPass(renderPass, cullingParams));
+                    if (camera.targetTexture != null)
+                    {
+                        xrPass.UpdateRenderTexture(camera.targetTexture);
+                    }
 
                     for (int renderParamIndex = 0; renderParamIndex < renderPass.GetRenderParameterCount(); ++renderParamIndex)
                     {
@@ -278,6 +282,10 @@ namespace UnityEngine.Experimental.Rendering
                         renderPass.GetRenderParameter(camera, renderParamIndex, out var renderParam);
 
                         var xrPass = s_PassAllocator(BuildPass(renderPass, cullingParams));
+                        if (camera.targetTexture != null)
+                        {
+                            xrPass.UpdateRenderTexture(camera.targetTexture);
+                        }
                         xrPass.AddView(BuildView(renderPass, renderParam));
 
                         s_Layout.AddPass(camera, xrPass);

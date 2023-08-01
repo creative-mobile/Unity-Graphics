@@ -23,6 +23,8 @@ namespace UnityEngine.Experimental.Rendering
 
             // Enable XR layout only for game camera
             bool isGameCamera = (camera.cameraType == CameraType.Game || camera.cameraType == CameraType.VR);
+
+            //Remove check target texture, because we want stereo rendering in render texture
             bool xrSupported = isGameCamera /*&& camera.targetTexture == null*/ && enableXR;
 
             if (XRSystem.displayActive && xrSupported)
