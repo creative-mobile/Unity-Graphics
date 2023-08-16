@@ -178,7 +178,7 @@ namespace UnityEngine.Experimental.Rendering
         /// <param name="camera"></param>
         public static void RenderMirrorView(CommandBuffer cmd, Camera camera)
         {
-#if ENABLE_VR && ENABLE_XR_MODULE
+#if ENABLE_VR && ENABLE_XR_MODULE && !UNITY_EDITOR
             XRMirrorView.RenderMirrorView(cmd, camera, s_MirrorViewMaterial, s_Display);
 #endif
         }
@@ -236,7 +236,10 @@ namespace UnityEngine.Experimental.Rendering
 
                 // XRTODO : discuss this code and UI implications
                 s_Display.textureLayout = XRDisplaySubsystem.TextureLayout.Texture2DArray;
+
+#if !UNITY_EDITOR
                 s_Display.SetPreferredMirrorBlitMode(XRMirrorViewBlitMode.None);
+#endif
                 // XRTODO : replace by API from XR SDK, assume we have 2 views max for now
                 TextureXR.maxViews = Math.Max(TextureXR.slices, 2);
 
