@@ -178,7 +178,7 @@ namespace UnityEngine.Experimental.Rendering
         /// <param name="camera"></param>
         public static void RenderMirrorView(CommandBuffer cmd, Camera camera)
         {
-#if ENABLE_VR && ENABLE_XR_MODULE && !UNITY_EDITOR
+#if ENABLE_VR && ENABLE_XR_MODULE && UNITY_EDITOR
             XRMirrorView.RenderMirrorView(cmd, camera, s_MirrorViewMaterial, s_Display);
 #endif
         }
