@@ -263,7 +263,16 @@ namespace UnityEngine.Experimental.Rendering
             {
                 s_Display.GetRenderPass(renderPassIndex, out var renderPass);
                 s_Display.GetCullingParameters(camera, renderPass.cullingPassIndex, out var cullingParams);
-
+#if UNITY_EDITOR
+                if (camera.targetTexture != null)
+                {
+                    s_Display.SetPreferredMirrorBlitMode(XRMirrorViewBlitMode.None);
+                }
+                else
+                {
+                s_Display.SetPreferredMirrorBlitMode(XRMirrorViewBlitMode.Default);
+                }
+#endif
                 if (CanUseSinglePass(camera, renderPass))
                 {
                     var xrPass = s_PassAllocator(BuildPass(renderPass, cullingParams));
